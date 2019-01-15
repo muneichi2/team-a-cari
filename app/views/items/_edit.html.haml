@@ -1,0 +1,137 @@
+.prof__wrapper
+  %main.prof__l-container.clearfix
+    .prof__l-content
+      %section.prof__chapter-container
+        %h2{:class => "prof__l-chapter-head"} プロフィール
+        %form{:action => "https://www.mercari.com/jp/mypage/profile/", :method => "POST"}
+          %input{:name => "prof__csrf-value", :type => "hidden", :value => "96bcad04fa7bd693d80510ac91e35a4e4cb933b4c67f3c5a259e983366a0d0b88f674e55df18497e1d9bfdb2a93d6b5610bf4717f70056304dabd19d3060ae17f"}/
+          .prof__setting-profile-icon
+            %figure.prof__icon-image
+              %img{:height => "60", :src => "//static-mercari-jp-imgtr2.akamaized.net/images/member_photo_noimage_thumb.png", :width => "60"}/
+            %input.prof__input-default{:name => "prof__nickname", :placeholder => "例)AYA☆セール中", :type => "text", :value => "ユーザー"}/
+          .prof__setting-profile-content
+            %textarea.prof__textarea-default{:name => "prof__introduction", :placeholder => "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
+            %input{:name => "prof__after_save_callback", :type => "hidden", :value => "https://www.mercari.com/jp/mypage/profile/"}/
+            %button.prof__btn-default.btn-red{:type => "submit"} 変更する
+    .prof__l-side
+      %nav.prof__mypage-nav
+        %ul.prof__mypage-nav-list
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/"}
+              マイページ
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/notification/"}
+              お知らせ
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/todo/"}
+              やることリスト
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/like/history/"}
+              いいね！一覧
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/sell/"}
+              出品する
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/listings/listing/"}
+              出品した商品 - 出品中
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/listings/in_progress/"}
+              出品した商品 - 取引中
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/listings/completed/"}
+              出品した商品 - 売却済み
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/purchase/"}
+              購入した商品 - 取引中
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/purchased/"}
+              購入した商品 - 過去の取引
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/news/"}
+              ニュース一覧
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/review/history/"}
+              評価一覧
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/help_center/"}
+              ガイド
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/support/"}
+              お問い合わせ
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+        %h3.prof__mypage-nav-head 売上・ポイント
+        %ul.prof__mypage-nav-list
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/sales/"}
+              売上・振込申請
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/point/"}
+              ポイント
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+        %h3.prof__mypage-nav-head 設定
+        %ul.prof__mypage-nav-list
+          %li
+            %a.prof__mypage-nav-list-item.active{:href => "/jp/mypage/profile/"}
+              プロフィール
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/deliver_address/"}
+              住所変更
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/card/"}
+              支払い方法
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/email_password/"}
+              メール/パスワード
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/identification/"}
+              本人情報
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/mypage/sms_confirmation/"}
+              電話番号の確認
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
+          %li
+            %a.prof__mypage-nav-list-item{:href => "/jp/logout/"}
+              ログアウト
+              %i.prof__icon-arrow-right
+                = fa_icon 'angle-right'
