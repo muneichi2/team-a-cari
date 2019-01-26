@@ -33,7 +33,7 @@ describe User do
     end
 
     it "is invalid with a nickname that has more than 20 characters " do
-      user = build(:user, nickname: "aaaaaaaaaaaaaaaaaaaa")
+      user = build(:user, nickname: "aaaaaaaaaaaaaaaaaaaaa")
       user.valid?
       expect(user.errors[:nickname][0]).to include("is too long")
     end

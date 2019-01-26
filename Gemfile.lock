@@ -353,9 +353,9 @@ DEPENDENCIES
   config
   devise
   erb2haml
+  factory_bot
   factory_bot_rails
   faker
-  factory_bot
   fog-aws
   font-awesome-rails
   gretel

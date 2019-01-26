@@ -2,28 +2,11 @@
   = render 'modules/header_log_in'
 
 %nav.bread-crumbs
-  %ul
-    %li{itemscope: true, itemtype: "#"}
-      = link_to root_path, itemprop: "url" do
-        %span{itemprop: "title"}
-          メルカリ
-      = fa_icon "chevron-right"
-    %li{itemscope: true, itemtype: "#"}
-      %span{itemprop: "title"}
-        マイページ
-      = fa_icon "chevron-right"
-    %li{itemscope: true, itemtype: "#"}
-      %span{itemprop: "title"}
-        本人情報の登録
+  - breadcrumb :identification
+  = breadcrumbs class: "breadcrumbs", style: :ul, separator: " #{content_tag(:i, '', :class=>'fa fa-chevron-right')} "
 
 %main.prof__l-container.clearfix
   = render 'side/side_bar'
-  %nav.bread-crumbs
-    - breadcrumb :identification
-    = breadcrumbs class: "breadcrumbs", style: :ul, separator: " #{content_tag(:i, '', :class=>'fa fa-chevron-right')} "
-
-  %main.prof__l-container.clearfix
-    = render 'side/side_bar'
 
   .person__rbox
     %section.person__rbox__container.identification__user

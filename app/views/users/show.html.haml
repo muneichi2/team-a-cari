@@ -1,80 +1,18 @@
 .mypage-container
   %header
-
     = render 'modules/header_log_in'
-
-  %nav.bread-crumbs
-    %ul
-      %li{itemscope: true, itemtype: "#"}
-        = link_to root_path, itemprop: "url" do
-          %span{itemprop: "title"}
-            メルカリ
-        = fa_icon "chevron-right"
-      %li{itemscope: true, itemtype: "#"}
-        %span{itemprop: "title"}
-          マイページ
-
-    .header-inner
-      .upper-box
-        = link_to root_path, class: "upper-box__logo" do
-<<<<<<< HEAD
-          = image_tag (asset_path "logo.png")
-=======
-          = image_tag asset_path "logo.png"
->>>>>>> alexandrokuta/master
-        %input.upper-box__search{placeholder: "キーワードから探す", type: "text"}
-        = fa_icon "search"
-      .under-box
-        .under-box__left
-          %ul.l-left
-            %li
-              = link_to root_path, class: "from-category" do
-                カテゴリーから探す
-            %li
-              = link_to root_path, class: "from-bland" do
-                ブランドから探す
-        .under-box__right
-          .l-right
-            / = link_to root_path, class: "header-login-btn" do
-            /   ログイン
-            / = link_to root_path, class: "header-signup-btn" do
-            /   新規会員登録
-            %ul.header-user-nav
-              %li
-                = link_to root_path, class: "icons" do
-                  =image_tag (asset_path "member_photo_noimage_thumb.png"), class: "user-icon"
-                  %span.icon-text
-                    マイページ
-              %li
-                = link_to root_path, class: "icons" do
-                  = fa_icon "bell-o"
-                  %span.icon-text
-                    お知らせ
-              %li
-                = link_to root_path, class: "icons" do
-                  = fa_icon "check"
-                  %span.icon-text
-                    やることリスト
 
   %nav.bread-crumbs
     - breadcrumb :mypage
     = breadcrumbs class: "breadcrumbs", style: :ul, separator: " #{content_tag(:i, '', :class=>'fa fa-chevron-right')} "
 
-
   %main.l-container.clearfix
     = render 'side/side_bar'
-<<<<<<< HEAD
-    .mypage-content
-      %section.mypage-user-icon
-        = link_to root_path, class: "mypage-user-images" do
-          = image_tag (asset_path "logo.mini.png"), class: "mypage-user-image"
-=======
-    
+
     .mypage-content
       %section.mypage-user-icon
         = link_to root_path, class: "mypage-user-images" do
           = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "mypage-user-image"
->>>>>>> alexandrokuta/master
           %h2.bold name
           .mypage-number
             .evaluation-num

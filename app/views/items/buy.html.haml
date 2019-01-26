@@ -1,0 +1,82 @@
+%header.signin__header
+  = link_to image_tag (asset_path 'logo.svg'), class: "signin__header--logo"
+
+.buy__single-main
+  %section.buy__l-single-container.buy-item-container
+    %h2.buy__l-single-head 購入を確定しますか？
+    %section.buy__content-buy-item
+      .buy-content-item-inner
+        %h3.buy-item-image
+          = image_tag (asset_path 'm52773408832_1.jpg'), class: 'buy__lazyloaded'
+        %p.buy__item-name.bold 商品名
+        = form_with class: 'buy__buy-form'
+        .buy__buy-form
+          %p.buy__price-ja.bold
+            ¥ 0
+            %span.item-shipping-fee.f14.bold 送料込み
+          %ul.buy__buy-accordion
+            %li.buy__accordion-parent
+              .buy__accordion-toggle-point
+                ポイントを使う
+                %i
+                  = fa_icon 'angle-down', class: 'buy__accordion-icon'
+
+              / JavaScript実装の際に使う
+              / %ul.buy__accordion-child
+              /   %li.bold 所持ポイント: P 500
+              /   %li.form-group
+              /     .buy__radio-default
+              /       %label
+              /         %input{name: "consume_point_radio", type: "radio", value: "none"}
+              /         ポイントを使わない
+              /     .buy__radio-default
+              /       %label
+              /         %input{name: "consume_point_radio", type: "radio", value: "all"}
+              /         %input{type: "hidden", value: "450"}
+              /         すべてのポイントを使う
+              /         %br/
+              /         P 450
+              /     .buy__radio-default
+              /       %label
+              /         %input{name: "consume_point_radio", type: "radio", value: "partial"}
+              /         一部のポイントを使う
+              /     %input.buy__input-default{placeholder: "使うポイントを入力", type: "number", :value => ""}
+              /     %input{name: "consume_point", type: "hidden", value: "0"}
+
+          %ul.buy__price-table
+            %li.buy__price-row.bold
+              .buy__price-cell 支払い金額
+              %span.buy__price-cell ¥ 0
+          .button.btn-default.btn-red.bold
+            購入する
+
+    %section.buy__content-user
+      .buy__content-user-inner
+        %h3.buy__content-user-inner 配送先
+        %address.buy__user-info-text
+          〒530-0011
+          %br/
+          大阪府大阪市北区
+          大深町０-１
+          %br/
+          山口 宗一郎
+        %p.buy-user-info-text
+        = link_to root_path, class: 'buy__user-info-fix' do
+          %span 変更する
+          = fa_icon 'angle-right', class: 'buy__icon-arrow-right'
+
+    %section.buy__content-user-last
+      .buy__content-user-inner
+        %h3.buy__content-user-inner 支払い方法
+        %p.buy__user-info-text
+          ************4242
+          %br/
+          00 / 00
+        = image_tag (asset_path "master-card.svg"), class: 'buy__user-info-card'
+        %p
+        = link_to root_path, class: 'buy__user-info-fix' do
+          %span 変更する
+          = fa_icon 'angle-right', class: 'buy__icon-arrow-right'
+
+.poricy
+  = image_tag asset_path('poricy.png')

@@ -1,34 +1,32 @@
 .member-ship__wrapper
-  = link_to image_tag (asset_path 'member_ship.png'), root_path
+  = image_tag (asset_path 'member_ship')
   %main.member-ship__main
     %section.member-ship__main--box
       %h2 会員情報入力
-      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "identification__card--form"}) do |f|
-        = devise_error_messages!
-
+      = form_with method: 'POST', class: "identification__card--form" do |f|
         .member-ship__content
           .member-ship__content__input
             = f.label :ニックネーム, class: "member-ship--text"
             %span.identification__content--require.identification__require--default 必須
-            = f.text_field :nickname, placeholder: "例)メルカリカリ二郎" , class: "identification__input--default"
+            = f.text_field :first_name, placeholder: "例)メルカリカリ二郎" , class: "identification__input--default"
 
           .member-ship__content__input
             = f.label :メールアドレス, class: "member-ship--text"
             %span.identification__content--require.identification__require--default 必須
-            = f.email_field :email, placeholder: "PC,携帯 どちらでも可" , class: "identification__input--default"
+            = f.email_field :first_name, placeholder: "PC,携帯  どちらでも可" , class: "identification__input--default"
 
           .member-ship__content__input
             = f.label :パスワード, class: "member-ship--text"
             %span.identification__content--require.identification__require--default 必須
-            = f.password_field :password, placeholder: "6文字以上" , class: "identification__input--default"
+            = f.password_field :first_name, placeholder: "6文字以上" , class: "identification__input--default"
 
           .member-ship__content__input
             = f.label :パスワード確認, class: "member-ship--text"
             %span.identification__content--require.identification__require--default 必須
-            = f.password_field :password_confirmation, placeholder: "6文字以上" , class: "identification__input--default"
+            = f.password_field :first_name, placeholder: "6文字以上" , class: "identification__input--default"
 
           .g-recaptcha{"data-sitekey" => "6LcAJ4oUAAAAAPJ-gRLKEkhePTBcBWT4tklVb6wi"}
 
-        = f.submit :登録する, class: "btn-next--content"
+        = f.submit :次へ進む, class: "btn-next--content"
 
   = image_tag (asset_path "poricy.png")

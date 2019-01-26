@@ -22,34 +22,25 @@ class ItemsController < ApplicationController
 
   end
 
+  def show
+  end
+
   def new
   end
 
-  def card
-  end
-
-  def card_add
-  end
-
-  def identification
-  end
-
-  def item_buy
-  end
-
-  def logout
-  end
-
-  def detail
+  def create
   end
 
   def edit
   end
 
-  def mypage
+  def update
   end
 
-  def membership
+  def logout
+  end
+
+  def buy
   end
 
 end

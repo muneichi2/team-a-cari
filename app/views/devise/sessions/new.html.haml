@@ -1,5 +1,6 @@
 .login__container
   = render "modules/header_logo_only"
+
   %main.signin__main
     .login__content
       .login__content--signin
@@ -22,4 +23,4 @@
           = f.submit value: "ログイン", class: "login__button login__form--default"
       = link_to "パスワードをお忘れの方", edit_user_password_path, class: "forget__password"
 .poricy__img--content
-  = image_tag ("/assets/poricy.png")
+  = image_tag (asset_path "poricy.png")

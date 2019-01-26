@@ -1,42 +1,6 @@
 .card__contents__wrapper
   %header
-    .header-inner
-      .upper-box
-        = link_to root_path, class: "upper-box__logo" do
-          = image_tag(asset_path "logo.png")
-        %input.upper-box__search{placeholder: "キーワードから探す", type: "text"}
-        = fa_icon "search"
-      .under-box
-        .under-box__left
-          %ul.l-left
-            %li
-              = link_to root_path, class: "from-category" do
-                カテゴリーから探す
-            %li
-              = link_to root_path, class: "from-bland" do
-                ブランドから探す
-        .under-box__right
-          .l-right
-            / = link_to root_path, class: "header-login-btn" do
-            /   ログイン
-            / = link_to root_path, class: "header-signup-btn" do
-            /   新規会員登録
-            %ul.header-user-nav
-              %li
-                = link_to root_path, class: "icons" do
-                  = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "user-icon"
-                  %span.icon-text
-                    マイページ
-              %li
-                = link_to root_path, class: "icons" do
-                  = fa_icon "bell-o"
-                  %span.icon-text
-                    お知らせ
-              %li
-                = link_to root_path, class: "icons" do
-                  = fa_icon "check"
-                  %span.icon-text
-                    やることリスト
+    = render 'modules/header_log_in'
 
   %nav.bread-crumbs
     - breadcrumb :card_add

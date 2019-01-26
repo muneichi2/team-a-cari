@@ -1,29 +1,9 @@
 %header
   = render 'modules/header_log_in'
 
-
-%nav.bread-crumbs
-  %ul
-    %li{itemscope: true, itemtype: "#"}
-      = link_to root_path, itemprop: "url" do
-        %span{itemprop: "title"}
-          メルカリ
-      = fa_icon "chevron-right"
-    %li{itemscope: true, itemtype: "#"}
-      %span{itemprop: "title"}
-        マイページ
-      = fa_icon "chevron-right"
-    %li{itemscope: true, itemtype: "#"}
-      %span.logpot_bold{itemprop: "title"}
-        ログアウト
-
   %nav.bread-crumbs
     - breadcrumb :logout
     = breadcrumbs class: "breadcrumbs", style: :ul, separator: " #{content_tag(:i, '', :class=>'fa fa-chevron-right')} "
-
-  %main.prof__l-container.clearfix
-    = render 'side/side_bar'
-
 
 %main.prof__l-container.clearfix
   = render 'side/side_bar'

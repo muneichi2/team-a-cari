@@ -18,7 +18,7 @@
         %ul.header-user-nav
           %li
             = link_to root_path, class: "icons" do
-              %img.user-icon{src: "assets/logo.mini.png"}
+              = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "user-icon"
               %span.icon-text
                 マイページ
           %li
