@@ -10,28 +10,23 @@
   margin: 0 auto;
   background: #fff;
   text-align: center;
-}
-
   #modal__content {
     margin-top: 7rem;
     font-size: 1.6rem;
     font-weight: bolder;
     color: #555;
   }
-
   #modal__text {
     height: 16rem;
     font-size: 1.4rem;
     font-weight: lighter;
     color: #666;
   }
-
   #modal__btn-box {
     display: inline-flex;
     vertical-align: bottom;
     height: 6.3rem;
     border-top: 0.1rem solid #ccc;
-
     #modal__cancel-btn {
       width: 32rem;
       height: 100%;
@@ -39,20 +34,17 @@
       display: inline-flex;
       justify-content: center;
       cursor: pointer;
-
       #modal__cancel-btn-str {
         align-self: center;
         font-size: 1.4rem;
         color: #666;
       }
     }
-
     #modal__delete-btn {
       width: 32rem;
       display: inline-flex;
       justify-content: center;
       cursor: pointer;
-
       #modal__delete-btn-str {
         align-self: center;
         font-size: 1.4rem;
@@ -60,6 +52,7 @@
       }
     }
   }
+}
 
 #overlay {
   display: none;

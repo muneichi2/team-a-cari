@@ -6,10 +6,11 @@
     %br 削除する代わりに停止することもできます。
     %br 本当に削除しますか？
   #modal__btn-box
+
     #modal__cancel-btn
       #modal__cancel-btn-str
         キャンセル
-    = link_to item_path(@item.id), id: 'modal__delete-btn', method: :delete do
+    = link_to item_path(@item), id: 'modal__delete-btn', method: :delete do
       #modal__delete-btn-str
         削除する
 
