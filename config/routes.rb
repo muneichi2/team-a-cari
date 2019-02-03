@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       end
   end
 
-  resources :item do
+  resources :items do
     collection do
       get '/:id/buy', to: 'items#buy'
       get '/:id/buy_confirm', to: 'cards#buy_confirm'

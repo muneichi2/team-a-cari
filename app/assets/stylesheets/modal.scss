@@ -1,4 +1,4 @@
-#modal__window {
+.modal {
   display: none;
   z-index: 3;
   position: fixed;
@@ -10,42 +10,49 @@
   margin: 0 auto;
   background: #fff;
   text-align: center;
-  #modal__content {
+
+  &__content {
     margin-top: 7rem;
     font-size: 1.6rem;
     font-weight: bolder;
     color: #555;
   }
-  #modal__text {
+
+  &__text {
     height: 16rem;
     font-size: 1.4rem;
     font-weight: lighter;
     color: #666;
   }
-  #modal__btn-box {
+
+  &__btn {
     display: inline-flex;
     vertical-align: bottom;
     height: 6.3rem;
     border-top: 0.1rem solid #ccc;
-    #modal__cancel-btn {
+
+    &--cancel {
       width: 32rem;
       height: 100%;
       border-right: 0.1rem solid #ccc;
       display: inline-flex;
       justify-content: center;
       cursor: pointer;
-      #modal__cancel-btn-str {
+
+      &--str {
         align-self: center;
         font-size: 1.4rem;
         color: #666;
       }
     }
-    #modal__delete-btn {
+
+    &--delete {
       width: 32rem;
       display: inline-flex;
       justify-content: center;
       cursor: pointer;
-      #modal__delete-btn-str {
+
+      &--str {
         align-self: center;
         font-size: 1.4rem;
         color: #0098e8;
@@ -54,7 +61,7 @@
   }
 }
 
-#overlay {
+.overlay {
   display: none;
   z-index: 2;
   position: fixed;
