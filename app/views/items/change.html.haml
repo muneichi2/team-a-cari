@@ -1,4 +1,4 @@
-= render 'modules/modal'
+= render partial: 'modules/modal'
 
 %header
   - if user_signed_in?
@@ -131,4 +131,5 @@
             相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
           = f.text_area :name , class: "commentarea-default"
           = f.submit 'コメントする', class: "message-submit comment-btn-default btn-gray"
-= image_tag (asset_path "mercari.png")
+
+= render partial: 'modules/footer_index'

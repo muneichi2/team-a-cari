@@ -83,8 +83,7 @@
           ナイキ新着アイテム
       = render partial: "pickup_category", locals: { items: @nike_items}
 
-%footer
-  = image_tag (asset_path "mercari.png"), class: "footer-image"
+= render partial: 'modules/footer_index'
 
 - if user_signed_in?
   = link_to new_item_path, class: "sell-btn" do

@@ -40,9 +40,10 @@ header {
         display: inline-block;
         font-size: 2rem;
         float: right;
-        position: absolute;
         right: 22rem;
         top: 1.5rem;
+        transform: translateY(-150%) translateX(-60%);
+        -webkit-text-stroke: 0.2rem white;
       }
     }
     .under-box {
