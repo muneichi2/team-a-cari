@@ -1,0 +1,17 @@
+%header
+  = render 'modules/header_log_in'
+%nav.bread-crumbs
+  - breadcrumb :sales
+  = breadcrumbs class: "breadcrumbs", style: :ul, separator: " #{content_tag(:i, '', :class=>'fa fa-chevron-right')} "
+%main.prof__l-container.clearfix
+  = render 'side/side_bar'
+
+  .sales-container.clearfix
+    %section.sales-container__chapter
+      %h2.chapter-head 売上・振込申請
+      %ul.chapter-list
+        %li
+          .chapter-list__box.clearfix
+            .sales-left 現在の売上金
+            .sales-right ¥ 0
+    %section.sales-container__chapter

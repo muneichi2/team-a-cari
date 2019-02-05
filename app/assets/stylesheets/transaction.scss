@@ -1,49 +1,111 @@
 .transaction__wrapper {
   width: 70rem;
   float: right;
-  h2 {
-    background: #fafafa;
-    font-size: 1.6rem;
-    line-height: 7.2rem;
-    font-weight: bold;
-    padding: 0 1.6rem;
-  }
-  ul{
-    display: flex;
-  li {
-    position: relative;
-    display: block;
-    color: #333;
-    font-size: 1.6rem;
-    line-height: 7.2rem;
-    width: 33.3%;
-    text-align: center;
-    font-weight: bold;
-    .status__default {
+  .transaction__contents {
+    h2 {
+      background: #fafafa;
+      font-size: 1.6rem;
+      line-height: 7.2rem;
       font-weight: bold;
+      padding: 0 1.6rem;
     }
+    ul{
+      display: flex;
+      li {
+        position: relative;
+        display: block;
+        color: #333;
+        font-size: 1.6rem;
+        line-height: 7.2rem;
+        width: 33.3%;
+        text-align: center;
+        font-weight: bold;
+        .status__default {
+          font-weight: bold;
+        }
+      }
     }
-    }
-}
-
-.transaction__contents--lists {
+  }
+  .transaction__contents--lists {
    background-color: #fff;
-  .transaction__list {
-    display: block;
-    &--default {
-      padding: 160px 0 60px;
-      background: url(/assets/images/custom.svg);
-      background-repeat: no-repeat;
-      background-position: center 40px;
-      background-size: 78px 85px;
-      margin: 0 auto;
-      font-size: 16px;
-      color: #ccc;
+    .transaction__list {
+      display: block;
+      li {
+        border-bottom: 1px solid #eee;
+        position: relative;
+        .mypage-item-list {
+          box-sizing: border-box;
+          display: block;
+          min-height: 8rem;
+          padding: 1.6rem;
+          color: #333;
+          img.image-size-default {
+            display: inline-block;
+            height: 4.8rem;
+            width: 4.8rem;
+            overflow: hidden;
+            float: left;
+          }
+          .mypage-item-body {
+            margin: 0 4rem 0 6.8rem;
+            &__text {
+              overflow: hidden;
+              display: block;
+              max-height: 4.4rem;
+              text-overflow: ellipsis;
+              font-size: 1.4rem;
+              line-height: 1.5;
+            }
+            &__icon {
+              font-size: 1.4rem;
+              .mypage-item-status {
+                box-sizing: border-box;
+                display: inline-block;
+                font-size: 1.2rem;
+                line-height: 1.2rem;
+                padding: 0.5rem 0.6rem;
+                border-radius: 2px;
+                color: #FFF;
+                font-weight: bold;
+                margin-top: 0.8rem;
+              }
+            }
+          }
+          .fa-chevron-right {
+            position: absolute;
+            top: 45%;
+            right: 2%;
+            font-size: 1.6rem;
+          }
+        }
+      }
+      &--default {
+        padding: 160px 0 60px;
+        background: asset-url('custom.svg');
+        background-repeat: no-repeat;
+        background-position: center 40px;
+        background-size: 78px 85px;
+        margin: 0 auto;
+        font-size: 16px;
+        color: #ccc;
+      }
+      .not-found {
+        text-align: center;
+      }
     }
-    }
+  }
 }
-
+.action-selling {
+  background-color: #0066FF;
+}
+.action-required {
+  background-color: #ea352d;
+}
+.done {
+  background-color: #888;
+}
 .status__select {
   border-top: 2px solid #ea352d;
   background: #fff;
 }
+

@@ -37,6 +37,7 @@
   vertical-align: top;
   &__button {
     font-size: 14px;
+    display: flex;
     a {
       box-sizing: border-box;
       display: inline-block;
@@ -44,6 +45,15 @@
       background: #f5f5f5;
       line-height: 44px;
       text-align: center;
+    }
+    .sell-upload-delete {
+      box-sizing: border-box;
+      display: inline-block;
+      width: 50%;
+      background: #f5f5f5;
+      line-height: 44px;
+      text-align: center;
+      color: #0099e8;
     }
     :last-child{
       border-left: 1px solid #eee;
@@ -119,7 +129,6 @@
         }
         &__drop {
           box-sizing: border-box;
-          display: flex;
           width: 62.0rem;
           margin: 1.6rem auto 0;
           margin-left: 0;
@@ -129,6 +138,7 @@
               display: inline;
               ul {
                 font-size: 0;
+                display: inline;
                 .preview-image {
                   width: 11.6rem;
                   height: 11.6rem;
@@ -144,6 +154,7 @@
             background-color: #f5f5f5;;
             border: dashed 0.1rem #ccc;
             min-height: 16.2rem;
+            width: 100%;
             padding: 4rem;
             text-align: center;
             word-wrap: break-word;

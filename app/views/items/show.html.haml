@@ -14,16 +14,12 @@
   .item-detail-container__main-content
     .item-photo
       .main-image
-        = image_tag (asset_path "cloth3.jpg")
+        = image_tag @item_images.first.image
       %ul.sub-image
-        %li
-          = image_tag (asset_path "cloth3.jpg")
-        %li
-          = image_tag (asset_path "member_photo_noimage_thumb.png")
-        %li
-          = image_tag (asset_path "cloth3.jpg")
-        %li
-          = image_tag (asset_path "member_photo_noimage_thumb.png")
+        - @item_images.each do |item_image|
+          %li
+            = image_tag item_image.image
+
       .item-soldout
         - if @item.buyer_id != nil
           .item-soldout-image
@@ -65,7 +61,8 @@
         %tr
           %th ブランド
           %td
-            = @item.brand.name
+            - if @item.brand.present?
+              = @item.brand.name
         %tr
           %th 商品のサイズ
           %td
@@ -104,14 +101,12 @@
 
   - if @item.buyer_id == nil
     .item-buy-btn
-      = link_to "/items/:id/buy", class: "item-buy-btn__link" do
+      = link_to "/items/#{@item.id}/buy_confirm", class: "item-buy-btn__link" do
         購入画面に進む
   - else @item.buyer_id != nil
     .item-buy-btn.disabled 売り切れました
   .item-description
     %p.item-description-inner
-      = @item.describe
-      %br
       = @item.describe
 
   .item-button-container.clearfix
@@ -206,8 +201,9 @@
   %section.items-box-container.clearfix.items-box-overflow
     %h2.items-box-head
       = link_to root_path, class: "extra-items" do
-        = @item.brand.name
-        その他の商品
+        - if @item.brand.present?
+          = @item.brand.name
+          その他の商品
 
     = render "other"
 

@@ -2,6 +2,9 @@
   - if flash.notice.present?
     .alert__flash__message
       = flash.notice
+  - if flash.alert.present?
+    .alert__flash__message
+      = flash.alert
   - if user_signed_in?
     = render 'modules/header_log_in'
   - else

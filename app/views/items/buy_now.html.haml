@@ -1,0 +1,32 @@
+%header
+  = render 'modules/header_log_in'
+%nav.bread-crumbs
+  - breadcrumb :buy_now
+  = breadcrumbs class: "breadcrumbs", style: :ul, separator: " #{content_tag(:i, '', :class=>'fa fa-chevron-right')} "
+%main.prof__l-container.clearfix
+  = render 'side/side_bar'
+  .transaction__wrapper
+    %section.transaction__contents
+      %h2 購入した商品
+      %ul
+        %li.buy__contents
+          = link_to "/users/#{current_user.id}/buy/now" do
+            %h3.status__default.buy__contents.status__select 取引中
+        %li.buy__contents
+          = link_to "/users/#{current_user.id}/bought"  do
+            %h3.status__default.buy__contents 過去の取引
+    .transaction__contents--lists
+      %ul.transaction__list
+        - if @items.present?
+          - @items.each do |item|
+            %li
+              = link_to item_path(item), class: "mypage-item-list" do
+                = image_tag (item.item_images.first.image), class: "image-size-default"
+                .mypage-item-body
+                  .mypage-item-body__text
+                    = item.name
+                  .mypage-item-body__icon
+                    .mypage-item-status.action-selling 取引中
+                = fa_icon 'chevron-right'
+        - else
+          %li.transaction__list--default.not-found 取引中の商品がございません。

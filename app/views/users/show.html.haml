@@ -14,7 +14,8 @@
       %section.mypage-user-icon
         = link_to root_path, class: "mypage-user-images" do
           = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "mypage-user-image"
-          %h2.bold name
+          %h2.bold
+            = current_user.nickname
           .mypage-number
             .evaluation-num
               評価

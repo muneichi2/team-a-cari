@@ -10,8 +10,13 @@ $(document).on('turbolinks:load', function() {
       let itemCommission = Math.floor(input * commission);
       let itemProfit = (input - itemCommission);
 
-      $(".fee-right").text("¥" + itemCommission);
-      $(".profit-right").text("¥" + itemProfit);
+      const formatter = new Intl.NumberFormat('ja-JP', {
+        style: 'currency',
+        currency: 'JPY'
+      });
+
+      $(".fee-right").text(formatter.format(itemCommission));
+      $(".profit-right").text(formatter.format(itemProfit));
 
     }else{
       $(".fee-right").text("-");

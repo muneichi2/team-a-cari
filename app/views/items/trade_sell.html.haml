@@ -1,26 +1,36 @@
 %header
   = render 'modules/header_log_in'
-
 %nav.bread-crumbs
-  - breadcrumb :identification
+  - breadcrumb :trade_sell
   = breadcrumbs class: "breadcrumbs", style: :ul, separator: " #{content_tag(:i, '', :class=>'fa fa-chevron-right')} "
-
 %main.prof__l-container.clearfix
   = render 'side/side_bar'
-
   .transaction__wrapper
     %section.transaction__contents
       %h2 出品した商品
       %ul
         %li
-          = link_to trade_sell_path do
+          = link_to "/users/#{current_user.id}/trade/sell" do
             %h3.status__default.status__select 出品中
         %li
-          = link_to trade_now_path do
+          = link_to "/users/#{current_user.id}/trade/now"  do
             %h3.status__default 取引中
         %li
-          = link_to trade_sold_path do
+          = link_to "/users/#{current_user.id}/trade/sold" do
             %h3.status__default 売却済み
     .transaction__contents--lists
       %ul.transaction__list
-        %li.transaction__list--default.transaction__not-found 取引中の商品がございません。
+        - if @items.present?
+          - @items.each do |item|
+
+            %li
+              = link_to "/items/#{item.id}/change", class: "mypage-item-list" do
+                = image_tag (item.item_images.first.image), class: "image-size-default"
+                .mypage-item-body
+                  .mypage-item-body__text
+                    = item.name
+                  .mypage-item-body__icon
+                    .mypage-item-status.action-selling 出品中
+                = fa_icon 'chevron-right'
+        - else
+          %li.transaction__list--default.not-found 取引中の商品がございません。

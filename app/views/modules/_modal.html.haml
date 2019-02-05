@@ -1,0 +1,16 @@
+.modal
+  %h2.modal__content
+    確認
+  .modal__text
+    削除すると二度と復活できません。
+    %br 削除する代わりに停止することもできます。
+    %br 本当に削除しますか？
+  .modal__btn
+    .modal__btn--cancel
+      .modal__btn--cancel--str
+        キャンセル
+    = link_to item_path(@item), class: 'modal__btn--delete', method: :delete do
+      .modal__btn--delete--str
+        削除する
+
+.overlay

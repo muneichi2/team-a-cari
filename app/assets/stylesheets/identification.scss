@@ -22,6 +22,10 @@
   width: 70rem;
   margin-left: 32rem;
 }
+.person__rbox__top {
+  width: 70rem;
+  margin: 0 auto;
+}
 
 .identification__content {
   margin-top: -4rem;
@@ -109,23 +113,31 @@
   }
   .year__text {
     position: absolute;
-    right: 40.6rem;
-    top: 1.7rem;
+    right: 39.9rem;
+    top: 3.7rem;
+    font-size: 1.5rem;
   }
   .month__text  {
     position: absolute;
     right: 22.6rem;
-    top: 1.7rem;
+    top: 3.7rem;
+    font-size: 1.5rem;
   }
   .day__text {
     position: absolute;
     right: 5rem;
-    top: 1.7rem;
+    top: 3.7rem;
+    font-size: 1.5rem;
   }
 }
 .select__birth__year {
-  width: 14rem;
-  margin-right: 4rem;
+  height: 4rem;
+  margin-top: 2rem;
+  margin-right: 6rem;
+}
+
+.birth__content {
+  margin-left: 4rem;
 }
 
 .confirm__text__identification {
@@ -177,4 +189,38 @@
 
 .identification__fotter {
   margin-top: 27rem;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+.birth__content__top {
+  display: flex;
+  position: relative;
+  margin-top: 2rem;
+  span {
+    font-size: 1.3rem;
+  }
+  .year__text {
+    position: absolute;
+    top: 3rem;
+    left: 17rem;
+    }
+  .month__text {
+    position: absolute;
+    top: 3rem;
+    right: 20rem;
+    }
+  .day__text {
+    position: absolute;
+    top: 3rem;
+    right: 1rem;
+    }
+  .select__year {
+    margin-right: 3rem;
+    position: relative;
+  }
 }

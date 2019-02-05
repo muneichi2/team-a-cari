@@ -22,23 +22,23 @@
           出品する
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
-        = link_to trade_sell_path, class: 'prof__mypage-nav-list-item' do
+        = link_to "/users/#{current_user.id}/trade/sell", class: 'prof__mypage-nav-list-item' do
           出品した商品 - 出品中
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
-        = link_to trade_now_path, class: 'prof__mypage-nav-list-item' do
+        = link_to "/users/#{current_user.id}/trade/now", class: 'prof__mypage-nav-list-item' do
           出品した商品 - 取引中
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
-        = link_to trade_sold_path, class: 'prof__mypage-nav-list-item' do
+        = link_to "/users/#{current_user.id}/trade/sold", class: 'prof__mypage-nav-list-item' do
           出品した商品 - 売却済み
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
-        = link_to root_path, class: 'prof__mypage-nav-list-item' do
+        = link_to "/users/#{current_user.id}/buy/now", class: 'prof__mypage-nav-list-item' do
           購入した商品 - 取引中
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
-        = link_to root_path, class: 'prof__mypage-nav-list-item' do
+        = link_to "/users/#{current_user.id}/bought", class: 'prof__mypage-nav-list-item' do
           購入した商品 - 過去の取引
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action
@@ -61,7 +61,7 @@
     %h3.prof__mypage-nav-head 売上・ポイント
     %ul.prof__mypage-nav-list
       %li.link__hover--action
-        = link_to root_path, class: 'prof__mypage-nav-list-item' do
+        = link_to "/users/#{current_user.id}/sales", class: 'prof__mypage-nav-list-item' do
           売上・振込申請
           = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
       %li.link__hover--action

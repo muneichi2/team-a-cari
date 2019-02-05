@@ -19,12 +19,12 @@
             .sell-upload-items-container
               .sell-upload-items.have-item-0
                 %ul
-            = f.label :image, class: "upload__drop-box have-item-0" do
-              %pre.drop-text
-                ドラッグアンドドロップ
-                またはクリックしてファイルをアップロード
               = f.fields_for :item_images do |i|
-                = i.file_field :image, id: "item_image", class: "hidden"
+                = i.label :image, class: "upload__drop-box have-item-0" do
+                  = i.file_field :image, class: "hidden"
+                  %pre.drop-text
+                    ドラッグアンドドロップ
+                    またはクリックしてファイルをアップロード
 
         .item
           .item-group

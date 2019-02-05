@@ -1,0 +1,127 @@
+%header
+  - if user_signed_in?
+    = render 'modules/header_log_in'
+  - else
+    = render 'modules/header_log_out'
+
+%body.prof__wrapper
+
+  %main.prof__l-container.clearfix
+    .prof__l-content
+      %section.prof__chapter-container
+        %h2.prof__l-chapter-head プロフィール
+        %form{method: "POST"}
+          %input{name: "prof__csrf-value", type: "hidden"}
+          .prof__setting-profile-icon
+            %figure.prof__icon-image
+              = image_tag ('//static-mercari-jp-imgtr2.akamaized.net/images/member_photo_noimage_thumb.png')
+            %input.prof__input-default{name: "prof__nickname", placeholder: "例)AYA☆セール中", type: "text"}
+          .prof__setting-profile-content
+            %textarea.prof__textarea-default{name: "prof__introduction", placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
+            %input{name: "prof__after_save_callback", type: "hidden"}
+            %button.prof__btn-default.btn-red{type: "submit"} 変更する
+
+    .prof__l-side
+      %nav.prof__mypage-nav
+        %ul.prof__mypage-nav-list
+          %li.link__hover--action
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              マイページ
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              お知らせ
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              やることリスト
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              いいね！一覧
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              出品する
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              出品した商品 - 出品中
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              出品した商品 - 取引中
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              出品した商品 - 売却済み
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              購入した商品 - 取引中
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              購入した商品 - 過去の取引
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              ニュース一覧
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              評価一覧
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              ガイド
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              お問い合わせ
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+
+        %h3.prof__mypage-nav-head 売上・ポイント
+        %ul.prof__mypage-nav-list
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              売上・振込申請
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              ポイント
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+
+        %h3.prof__mypage-nav-head 設定
+        %ul.prof__mypage-nav-list
+          %li
+            = link_to edit_user_path(current_user), class: 'prof__mypage-nav-list-item' do
+              プロフィール
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              住所変更
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              支払い方法
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              メール/パスワード
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              本人情報
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              電話番号の確認
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+          %li
+            = link_to root_path, class: 'prof__mypage-nav-list-item' do
+              ログアウト
+              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+
+  %footer
+    = image_tag (asset_path 'mercari.png')

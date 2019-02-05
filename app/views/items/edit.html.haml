@@ -1,127 +1,182 @@
-%header
-  - if user_signed_in?
-    = render 'modules/header_log_in'
-  - else
-    = render 'modules/header_log_out'
+= form_with model: @item, method: :patch, local: true, class: "item-form" do |f|
+  .items
+    .header
+      .icon
+        = link_to root_path do
+          = image_tag('//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?817106341', class: 'item-img')
+    .main
+      .main-body
+        .title
+          商品の情報を入力
+        .upload
+          .upload__head
+            出品画像
+          .upload__need
+            必須
+          .upload__description
+            最大10枚までアップロードできます
+          .upload__drop.clearfix
+            .sell-upload-items-container
+              .sell-upload-items.have-item-0
+                %ul
+                  - @item.item_images.each_with_index do |item_image, num|
+                    %li.sell-upload-item
+                      = image_tag (item_image.image), class: "preview-image"
+                      .sell-upload-item__button
+                        = link_to "編集", '#', class: "sell-upload-edit"
+                        = link_to "削除", item_image_path(item_image.id), method: :delete, class: "sell-upload-delete", data: {image_number: num}
 
-%body.prof__wrapper
+              = f.fields_for :item_images do |i|
+                = i.label :image, class: "upload__drop-box" do
+                  = i.file_field :image, class: "hidden"
+                  %pre.drop-text
+                    ドラッグアンドドロップ
+                    またはクリックしてファイルをアップロード
 
-  %main.prof__l-container.clearfix
-    .prof__l-content
-      %section.prof__chapter-container
-        %h2.prof__l-chapter-head プロフィール
-        %form{method: "POST"}
-          %input{name: "prof__csrf-value", type: "hidden"}
-          .prof__setting-profile-icon
-            %figure.prof__icon-image
-              = image_tag ('//static-mercari-jp-imgtr2.akamaized.net/images/member_photo_noimage_thumb.png')
-            %input.prof__input-default{name: "prof__nickname", placeholder: "例)AYA☆セール中", type: "text"}
-          .prof__setting-profile-content
-            %textarea.prof__textarea-default{name: "prof__introduction", placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
-            %input{name: "prof__after_save_callback", type: "hidden"}
-            %button.prof__btn-default.btn-red{type: "submit"} 変更する
+        .item
+          .item-group
+            .item-head
+              商品名
+            .item-need
+              必須
+            = f.text_field :name, value: @item.name, class: "item-form"
+          .description-group
+            .description-head
+              商品の説明
+            .description-need
+              必須
+            = f.text_area :describe, value: @item.describe, class: "description-form", row: "5"
+        .detail.clearfix
+          .detail-head
+            商品の詳細
+          .detail-box
+            .category
+              .category-head
+                カテゴリー
+              .category-need
+                必須
+              .category-form
+                .category-wrap
 
-    .prof__l-side
-      %nav.prof__mypage-nav
-        %ul.prof__mypage-nav-list
-          %li.link__hover--action
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              マイページ
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              お知らせ
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              やることリスト
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              いいね！一覧
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              出品する
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              出品した商品 - 出品中
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              出品した商品 - 取引中
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              出品した商品 - 売却済み
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              購入した商品 - 取引中
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              購入した商品 - 過去の取引
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              ニュース一覧
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              評価一覧
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              ガイド
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              お問い合わせ
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+                  = f.select :category_id, Category.roots.map{|category|[category.name, category.id]}, {selected: @item.category.root.id}, class: "select-category top-category"
+                  = fa_icon 'angle-down', class: 'category-icon'
 
-        %h3.prof__mypage-nav-head 売上・ポイント
-        %ul.prof__mypage-nav-list
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              売上・振込申請
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              ポイント
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+            #size-form.size-group
+              .form-title
+                サイズ
+                %span.form-require 必須
+              .select-wrap
+                = f.select :size_id, Size.all.map{|size| [size.name, size.id]}, {prompt: "---"}, class: "select-default"
+                = fa_icon 'angle-down', class: 'form-icon'
+            #brand-form.brand-group
+              .form-title
+                ブランド
+                %span.form-arbitrary 任意
+              .select-wrap
+                = f.select :brand_id, Brand.all.map{|brand| [brand.name, brand.id]}, {prompt: "---"}, class: "select-default"
+                = fa_icon 'angle-down', class: 'form-icon'
 
-        %h3.prof__mypage-nav-head 設定
-        %ul.prof__mypage-nav-list
-          %li
-            = link_to edit_user_path(current_user), class: 'prof__mypage-nav-list-item' do
-              プロフィール
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              住所変更
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              支払い方法
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              メール/パスワード
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              本人情報
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              電話番号の確認
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
-          %li
-            = link_to root_path, class: 'prof__mypage-nav-list-item' do
-              ログアウト
-              = fa_icon 'angle-right', class: 'prof__icon-arrow-right'
+            .state
+              .state-head
+                商品の状態
+              .state-need
+                必須
+              .state-form
+                .state-wrap
+                  .state-base
+                    = f.select :status, Item.statuses.keys.to_a, {prompt: "---"}, class: "select-state bg-white"
+                    = fa_icon 'angle-down', class: 'state-icon'
 
-  %footer
-    = image_tag (asset_path 'mercari.png')
+        .delivery.clearfix
+          .delivery-head
+            配送について
+          .delivery-question
+            = fa_icon 'question-circle', class: 'icon'
+          .delivery-box
+            .burden
+              .burden-head
+                配送料の負担
+              .burden-need
+                必須
+              .burden-form
+                .burden-wrap
+                  .burden-base
+                    = f.select :burden, Item.burdens.keys.to_a, {prompt: "---"}, class: "select-burden bg-white"
+                = fa_icon 'angle-down', class: 'burden-icon'
+            #d-method.delivery-method
+              .method-head
+                配送の方法
+                %span.form-require 必須
+              .select-wrap
+                = f.select :delivery_method, Item.delivery_methods.keys.to_a, {prompt: "---"}, class: "select-default"
+                = fa_icon 'angle-down', class: 'form-icon'
+
+            .region
+              .region-head
+                発送元の地域
+              .region-need
+                必須
+              .region-form
+                .region-wrap
+                  .region-base
+                    = f.select :prefecture, Item.prefectures.keys.to_a, {prompt: "---"}, class: "select-region bg-white"
+                    = fa_icon 'angle-down', class: 'region-icon'
+            .day
+              .day-head
+                発送までの日数
+              .day-need
+                必須
+              .day-form
+                .day-wrap
+                  .day-base
+                    = f.select :delivery_day, Item.delivery_days.keys.to_a, {prompt: "---"}, class: "select-day bg-white"
+                    = fa_icon 'angle-down', class: 'day-icon'
+        .sale
+          .sale-head
+            販売価格(300〜9,999,999)
+          .sale-question
+            = fa_icon 'question-circle', class: 'icon'
+          .sale-box
+            .price
+              .price-group
+                .price-group__head
+                  価格
+                .price-group__need
+                  必須
+              .price-input
+                .price-wrap
+                  ¥
+                  .price-base
+                    = f.text_field :price, value: @item.price, class: "price-base__form"
+            .fee
+              .fee-left
+                販売手数料(10%)
+              .fee-right -
+            .profit
+              .profit-left
+                販売利益
+              .profit-right -
+        .exhibit
+          .exhibit-box
+            %p.caution-text
+              = link_to '/jp/help_center/getting_started/prohibited_items/', class: "caution-text-link" do
+                禁止されている出品
+              、
+              = link_to '/jp/help_center/getting_started/prohibited_conduct/', class: "caution-text-link" do
+                行為
+              を必ずご確認ください。
+            %p.caution-text
+              またブランド品でシリアルナンバー等がある場合はご記載ください。
+              = link_to '/jp/help_center/getting_started/counterfeit_goods/', class: "caution-text-link" do
+                偽ブランドの販売
+              は犯罪であり処罰される可能性があります。
+            %p.caution-text
+              また、出品をもちまして
+              = link_to '/jp/seller_terms/', class: "caution-text-link" do
+                加盟店規約
+              に同意したことになります。
+            = f.submit "変更する", class: "exhibit-button"
+            %button.back-button
+              もどる
+      .footer
+        = image_tag (asset_path "poricy.png"), class: "exhibit__footer"

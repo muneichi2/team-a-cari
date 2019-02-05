@@ -7,7 +7,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-color/2.1.2/jquery.color.js"></script>
     <script type="text/javascript" src="https://js.pay.jp/"></script>
-    <script type="text/javascript">Payjp.setPublicKey('pk_test_2729bb4965ed675cc01814a0');</script>
+    <script type="text/javascript">Payjp.setPublicKey(ENV["PAYJP_PABLICK_KEY"]);</script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
   <body>

@@ -35,8 +35,11 @@
   }
 
 .login__main--inner {
-    padding:5rem;
-    margin-top: -3.5rem;
+  padding:5rem;
+  margin-top: -3.5rem;
+  a {
+    color: #FFF;
+  }
 }
 
 .login__form--default {

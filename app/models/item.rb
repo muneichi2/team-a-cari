@@ -3,14 +3,14 @@ class Item < ApplicationRecord
   belongs_to :category
 
   belongs_to :user, optional: true
-  belongs_to :size
+  belongs_to :size, optional: true
   belongs_to :brand, optional: true
 
   belongs_to :seller, class_name: "User", optional: true
   belongs_to :buyer, class_name: "User", optional: true
 
-  has_many   :item_images, dependent: :destroy
-  accepts_nested_attributes_for :item_images
+  has_many   :item_images, dependent: :destroy, autosave: true
+  accepts_nested_attributes_for :item_images, allow_destroy: true
 
   enum status:{"新品、未使用": 1, "未使用に近い": 2, "目立った傷や汚れなし": 3, "やや傷や汚れあり": 4, "傷や汚れあり": 5, "全体的に状態が悪い": 6}
   enum burden:{"送料込み(出品者負担)":1, "着払い(購入者負担)":2}
@@ -26,4 +26,5 @@ class Item < ApplicationRecord
     "福岡県": 40,"佐賀県": 41,"長崎県": 42,"熊本県": 43,"大分県": 44,"宮崎県": 45,"鹿児島県": 46,"沖縄県": 47
   }
   enum delivery_day: {"1~2日で発送": 1, "2~3日で発送": 2, "4~7日で発送": 3}
+  enum trade: {"出品中": 0, "取引中": 1, "売却済": 2}
 end

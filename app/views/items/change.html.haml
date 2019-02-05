@@ -1,0 +1,145 @@
+= render partial: 'modules/modal'
+
+%header
+  - if user_signed_in?
+    = render 'modules/header_log_in'
+  - else
+    = render 'modules/header_log_out'
+
+%nav.bread-crumbs
+  - breadcrumb :change
+  = breadcrumbs class: "breadcrumbs", style: :ul, separator: " #{content_tag(:i, '', :class=>'fa fa-chevron-right')} "
+
+.edit-container
+  %section.item-detail-container
+    %h1.item-detail-container__item-name
+      = @item.name
+    .item-detail-container__main-content
+      .item-photo
+        .main-image
+          = image_tag (@item.item_images.first.image)
+        %ul.sub-image
+          %li
+            = image_tag (@item.item_images.first.image)
+          %li
+            = image_tag (asset_path "member_photo_noimage_thumb.png")
+          %li
+            = image_tag (asset_path "cloth3.jpg")
+          %li
+            = image_tag (asset_path "member_photo_noimage_thumb.png")
+        .item-soldout
+          - if @item.buyer_id != nil
+            .item-soldout-image
+              %p.sold SOLD
+              
+      %table.item-detail-table
+        %tbody
+          %tr
+            %th 出品者
+            %td
+              = link_to root_path do
+                = @item.seller.nickname
+              .ratings-wrapper
+                .item-user-ratings
+                  = fa_icon "smile-o"
+                  %span 56
+                .item-user-ratings
+                  = fa_icon "meh-o"
+                  %span 0
+                .item-user-ratings
+                  = fa_icon "frown-o"
+                  %span 0
+          %tr
+            %th カテゴリー
+            %td
+              = link_to root_path do
+                %p
+                  = @item.category.root.name
+              = link_to root_path do
+                .item-detail-table-sub-category
+                  = fa_icon "chevron-right"
+                  = @item.category.parent.name
+              = link_to root_path do
+                .item-detail-table-sub-sub-category
+                  = fa_icon "chevron-right"
+                  = @item.category.name
+                  
+          %tr
+            %th ブランド
+            %td
+              - if @item.brand.present?
+                = @item.brand.name
+          %tr
+            %th 商品のサイズ
+            %td
+              = @item.size.name
+          %tr
+            %th 商品の状態
+            %td
+              = @item.status
+          %tr
+            %th 配送料の負担
+            %td
+              = @item.burden
+          %tr
+            %th 配送の方法
+            %td
+              = @item.delivery_method
+          %tr
+            %th 配送元地域
+            %td
+              = link_to root_path do
+                = @item.prefecture
+          %tr
+            %th 発送日の目安
+            %td
+              = @item.delivery_day
+
+    .item-price-box.text-center
+      %span.item-price-box__price.bold
+        = number_to_currency(@item.price, locale: 'jp')
+      %span.item-price-box__tax (税込)
+      %span.item-price-box__fee
+        - if @item.burden_before_type_cast == 1
+          %p 送料込み
+        - else @item.burden_before_type_cast == 2
+          %p 着払い
+     
+    .item-description
+      %p.item-description-inner
+        = @item.describe
+       
+  .item-change-container
+    = link_to edit_item_path(@item.id), class: "btn-default btn-red" do
+      商品の編集
+    %p.text-center or
+    %button.btn-default.btn-gray 出品を一旦停止する
+    %button.btn-default.btn-red この商品を削除する
+
+  .item-detail-message
+    .message-container
+      .message-content
+        %ul.message-items
+          %li.clearfix
+            .message-user
+              %figure
+                .message-user-unknown
+                  = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "message-user-photo"
+                %figcaption.bold
+                
+            .message-body
+              .message-body-text 出品者がコメントを削除しました
+              .message-icons.clearfix
+                %time.message-icon-left
+                  = fa_icon "clock-o"
+                  %span 2日前
+              = fa_icon "comment rotate-90"
+
+      .message-content
+        = form_with method: 'POST', class: "message_form" do |f|
+          %p
+            相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          = f.text_area :name , class: "commentarea-default"
+          = f.submit 'コメントする', class: "message-submit comment-btn-default btn-gray"
+
+= render partial: 'modules/footer_index'

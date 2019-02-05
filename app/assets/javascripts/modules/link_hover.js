@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', function() {
   $('.prof__mypage-nav-list-item').hover(
     function(){
     $(this).css('background-color', '#f5f5f5');
