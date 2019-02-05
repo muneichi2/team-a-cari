@@ -19,6 +19,7 @@ class User < ApplicationRecord
   validates :nickname, presence: true, length: { maximum: 20 }
   validates :email, presence: true, uniqueness: true
   #validates :password, presence: true, confirmation: true, length: { minimum: 6 }
+
   enum  prefecture: {
     "北海道": 1,"青森県": 2,"岩手県": 3,"宮城県": 4,"秋田県": 5,"山形県": 6,"福島県": 7,
     "茨城県": 8,"栃木県": 9,"群馬県": 10,"埼玉県": 11,"千葉県": 12,"東京都": 13,"神奈川県": 14,

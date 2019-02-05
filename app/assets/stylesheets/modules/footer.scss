@@ -1,10 +1,21 @@
-footer {
+footer.guide__index {
   box-sizing: border-box;
   position: relative;
-  margin: 0 auto;
-  .footer-image {
+
+  .guide__index--image {
     width: 100%;
     min-height: 79rem;
+    width: -webkit-fill-available;
+  }
+}
+
+footer.logo__gray {
+  box-sizing: border-box;
+  position: relative;
+
+  .exhibit__footer {
+    width: 100%;
+    width: -webkit-fill-available;
   }
 }
 
