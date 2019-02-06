@@ -20,13 +20,16 @@
         - if @items.present?
           - @items.each do |item|
             %li
-              = link_to item_path(item), class: "mypage-item-list" do
-                = image_tag (item.item_images.first.image), class: "image-size-default"
+              = link_to new_item_review_path(item), class: "mypage-item-list" do
+                - if item.item_images.present?
+                  = image_tag (item.item_images.first.image), class: "image-size-default"
+                - else
+                  = image_tag (asset_path "noimage.gif"), class: "image-size-default"
                 .mypage-item-body
                   .mypage-item-body__text
                     = item.name
                   .mypage-item-body__icon
-                    .mypage-item-status.action-selling 取引中
+                    .mypage-item-status.action-selling 取引終了
                 = fa_icon class: 'fa fa-chevron-right'
         - else
           %li.transaction__list--default.not-found 取引中の商品がございません。

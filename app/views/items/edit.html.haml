@@ -19,15 +19,24 @@
             .sell-upload-items-container
               .sell-upload-items.have-item-0
                 %ul
-                  - @item.item_images.each_with_index do |item_image, num|
+                  - if @item.item_images.present?
+                    - @item.item_images.each_with_index do |item_image, num|
+                      %li.sell-upload-item
+                        = image_tag (item_image.image), class: "preview-image"
+                        .sell-upload-item__button
+                          = link_to "編集", '#', class: "sell-upload-edit"
+                          .sell-upload-delete{"data-image-number": num} 削除
+                  - else
                     %li.sell-upload-item
-                      = image_tag (item_image.image), class: "preview-image"
+                      = image_tag (asset_path "noimage.gif"), class: "preview-image"
                       .sell-upload-item__button
                         = link_to "編集", '#', class: "sell-upload-edit"
-                        = link_to "削除", item_image_path(item_image.id), method: :delete, class: "sell-upload-delete", data: {image_number: num}
+                        .sell-upload-delete{"data-image-number": 0} 削除
+
 
               = f.fields_for :item_images do |i|
                 = i.label :image, class: "upload__drop-box" do
+                  = i.check_box :_destroy, id: "delete", class: "hidden"
                   = i.file_field :image, class: "hidden"
                   %pre.drop-text
                     ドラッグアンドドロップ
@@ -57,8 +66,21 @@
                 必須
               .category-form
                 .category-wrap
-
                   = f.select :category_id, Category.roots.map{|category|[category.name, category.id]}, {selected: @item.category.root.id}, class: "select-category top-category"
+                  = fa_icon 'angle-down', class: 'category-icon'
+
+                .category-wrap.sub-category
+                  %select.select-category.sub-category{selected: @set_sub.name}
+                    %option{value: @set_sub.id, selected: @set_sub.name} #{@set_sub.name}
+                    - @sub_categories.each do|sub|
+                      %option{ value: sub.id} #{sub.name}
+                  = fa_icon 'angle-down', class: 'category-icon'
+
+                .category-wrap.third-category
+                  %select.select-category.third-category{selected: @set_third.name}
+                    %option{value: @set_third.id, selected: @set_third.name} #{@set_third.name}
+                    - @third_categories.each do|third|
+                      %option{ value: third.id} #{third.name}
                   = fa_icon 'angle-down', class: 'category-icon'
 
             #size-form.size-group
@@ -151,11 +173,13 @@
             .fee
               .fee-left
                 販売手数料(10%)
-              .fee-right -
+              .fee-right
+                = number_to_currency(@commission, locale: 'jp')
             .profit
               .profit-left
                 販売利益
-              .profit-right -
+              .profit-right
+                = number_to_currency(@profit, locale: 'jp')
         .exhibit
           .exhibit-box
             %p.caution-text
@@ -176,7 +200,8 @@
                 加盟店規約
               に同意したことになります。
             = f.submit "変更する", class: "exhibit-button"
-            %button.back-button
-              もどる
 
-= render partial: 'modules/footer_index'
+            = link_to "もどる", "/items/#{@item.id}/change", class: "back-button"
+
+      .footer
+        = image_tag (asset_path "poricy.png"), class: "exhibit__footer"

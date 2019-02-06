@@ -2,44 +2,26 @@
 
   - items.each do |item|
     %section.items-box
-      - if user_signed_in? && item.seller_id == current_user.id
-        = link_to edit_item_path(item) do
-          .trim
+      = link_to item_path(item.id) do
+        .trim
+          - if item.item_images.present?
             = image_tag item.item_images.first.image
-          .item-soldout
-            - if item.buyer_id.present?
-              .item-soldout-image
-                %p.sold SOLD
-          .items-box-body
-            .items-box-name
-              = item.name
-            .items-box-num
-              .items-box-price
-                = number_to_currency(item.price, locale: 'jp')
-              .items-box-likes
-                = fa_icon 'heart-o'
-                %span 2
-              .item-box-tax (税込)
-      - else
-        = link_to item_path(item.id) do
-          .trim
-            = image_tag item.item_images.first.image
-          .item-soldout
-            - if item.buyer_id.present?
-              .item-soldout-image
-                %p.sold SOLD
-          .items-box-body
-            .items-box-name
-              = item.name
-            .items-box-num
-              .items-box-price
-                = number_to_currency(item.price, locale: 'jp')
-              .items-box-likes
-                = fa_icon 'heart-o'
-                %span 2
-              .item-box-tax (税込)
-
-
+          - else
+            = image_tag (asset_path "noimage.gif")
+        .item-soldout
+          - if item.buyer_id.present?
+            .item-soldout-image
+              %p.sold SOLD
+        .items-box-body
+          .items-box-name
+            = item.name
+          .items-box-num
+            .items-box-price
+              = number_to_currency(item.price, locale: 'jp')
+            .items-box-likes
+              = fa_icon 'heart-o'
+              %span 2
+            .item-box-tax (税込)
 
 .view-all
   = link_to root_path do

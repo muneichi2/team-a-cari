@@ -94,6 +94,21 @@ header.signin__header {
               }
             }
           }
+          .buy__accordion-child {
+            font-size: 2rem;
+            margin: 2rem;
+            display: none;
+            .buy__input-default {
+              text-align: center;
+              font-size: 1.5rem;
+              height: 3rem;
+            }
+            .point-alert {
+              color: #ea352d;
+              font-size: 1.5rem;
+              display: none;
+            }
+          }
 
           ul.buy__price-table {
             display: table;

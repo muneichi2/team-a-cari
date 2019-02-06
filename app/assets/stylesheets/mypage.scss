@@ -290,3 +290,15 @@
     float: left;
   }
 }
+
+.review__contents--index {
+  .l-container .mypage-content .mypage-user-icon {
+    box-sizing: border-box;
+    position: relative;
+    height: 20rem;
+    padding: 2rem;
+    background-image: url(/assets/user-bg-762d796….jpg);
+    text-align: center;
+    background-size: cover;
+  }
+}

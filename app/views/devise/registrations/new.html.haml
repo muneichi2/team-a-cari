@@ -1,41 +1,43 @@
-.member-ship__wrapper
-  = link_to image_tag(asset_path 'member_ship.png'), root_path
-  %main.member-ship__main
-    %section.member-ship__main--box
-      %h2 会員情報入力
-      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "identification__card--form"}) do |f|
-        = devise_error_messages!
+%header.signin__header
+  = link_to root_path do
+    = image_tag (asset_path 'logo.svg'), class: "signin__header--logo"
 
-        .member-ship__content
-          .member-ship__content__input
-            = f.label :ニックネーム, class: "member-ship--text"
-            %span.identification__content--require.identification__require--default 必須
-            = f.text_field :nickname, placeholder: "例)メルカリカリ二郎" , class: "identification__input--default"
+%main.member-ship__main
+  %section.member-ship__main--box
+    %h2 会員情報入力
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "identification__card--form"}) do |f|
+      = devise_error_messages!
 
-          .member-ship__content__input
-            = f.label :メールアドレス, class: "member-ship--text"
-            %span.identification__content--require.identification__require--default 必須
-            = f.email_field :email, placeholder: "PC,携帯 どちらでも可" , class: "identification__input--default"
+      .member-ship__content
+        .member-ship__content__input
+          = f.label :ニックネーム, class: "member-ship--text"
+          %span.identification__content--require.identification__require--default 必須
+          = f.text_field :nickname, placeholder: "例)メルカリカリ二郎" , class: "identification__input--default"
 
-          .member-ship__content__input
-            = f.label :パスワード, class: "member-ship--text"
-            %span.identification__content--require.identification__require--default 必須
-            = f.password_field :password, placeholder: "6文字以上" , class: "identification__input--default"
+        .member-ship__content__input
+          = f.label :メールアドレス, class: "member-ship--text"
+          %span.identification__content--require.identification__require--default 必須
+          = f.email_field :email, placeholder: "PC,携帯 どちらでも可" , class: "identification__input--default"
 
-          .member-ship__content__input
-            = f.label :パスワード確認, class: "member-ship--text"
-            %span.identification__content--require.identification__require--default 必須
-            = f.password_field :password_confirmation, placeholder: "6文字以上" , class: "identification__input--default"
+        .member-ship__content__input
+          = f.label :パスワード, class: "member-ship--text"
+          %span.identification__content--require.identification__require--default 必須
+          = f.password_field :password, placeholder: "6文字以上" , class: "identification__input--default"
 
-          :javascript
-            grecaptcha.ready(function() {
-            grecaptcha.execute('6LfY64wUAAAAAEsVe027CKUVgpM4Te11Yf7DJ6Ik', {action: 'login'})
-            .then(function(token) {
-            // Verify the token on the server.
-            });
-            });
+        .member-ship__content__input
+          = f.label :パスワード確認, class: "member-ship--text"
+          %span.identification__content--require.identification__require--default 必須
+          = f.password_field :password_confirmation, placeholder: "6文字以上" , class: "identification__input--default"
 
-        = f.submit :登録する, class: "btn-next--content"
+        :javascript
+          grecaptcha.ready(function() {
+          grecaptcha.execute('6LfY64wUAAAAAEsVe027CKUVgpM4Te11Yf7DJ6Ik', {action: 'login'})
+          .then(function(token) {
+          // Verify the token on the server.
+          });
+          });
 
-  = render partial: 'modules/footer_logo'
+      = f.submit :登録する, class: "btn-next--content"
+
+= render partial: 'modules/footer_logo'
 

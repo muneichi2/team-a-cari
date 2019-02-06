@@ -1,69 +1,69 @@
-.member-ship__wrapper
+%header.signin__header
   = link_to root_path do
-    = image_tag (asset_path 'phone_header.png')
+    = image_tag (asset_path 'logo.svg'), class: "signin__header--logo"
 
-  .person__rbox__top
-    %section.person__rbox__container.identification__user
-      %h2 お届け先住所入力
-      %p お客さまのあんしん・あんぜんな取引のため、本人情報のご登録をお願いしております。
+.person__rbox__top
+  %section.person__rbox__container.identification__user
+    %h2 お届け先住所入力
+    %p お客さまのあんしん・あんぜんな取引のため、本人情報のご登録をお願いしております。
 
-      = form_with model: @user, local: true,class: "identification__card--form" do |f|
-        .identification__content
-          .identification__content--form.identification__form--default
-          = f.label :お名前
-          %span.identification__content--require.identification__require--default 必須
-          = f.text_field :first_name, placeholder: "苗字 漢字" , class: "identification__input--default"
-          = f.text_field :last_name, placeholder: "名前 漢字" , class: "identification__input--default"
+    = form_with model: @user, local: true,class: "identification__card--form" do |f|
+      .identification__content
+        .identification__content--form.identification__form--default
+        = f.label :お名前
+        %span.identification__content--require.identification__require--default 必須
+        = f.text_field :first_name, placeholder: "苗字 漢字" , class: "identification__input--default"
+        = f.text_field :last_name, placeholder: "名前 漢字" , class: "identification__input--default"
 
-          .identification__content--form--kana.identification__form--default
-          = f.label :お名前カナ
-          %span.identification__content--require.identification__require--default 必須
-          = f.text_field :first_reading, placeholder: "苗字 カナ" , class: "identification__input--default"
-          = f.text_field :last_reading, placeholder: "名前 カナ" , class: "identification__input--default"
+        .identification__content--form--kana.identification__form--default
+        = f.label :お名前カナ
+        %span.identification__content--require.identification__require--default 必須
+        = f.text_field :first_reading, placeholder: "苗字 カナ" , class: "identification__input--default"
+        = f.text_field :last_reading, placeholder: "名前 カナ" , class: "identification__input--default"
 
-          .identification__content--form--kana.identification__form--default
-          = f.label :郵便番号
-          %span.identification__content--any 任意
-          = f.number_field :postal_code, placeholder: "郵便番号" , class: "identification__input--default"
+        .identification__content--form--kana.identification__form--default
+        = f.label :郵便番号
+        %span.identification__content--any 任意
+        = f.number_field :postal_code, placeholder: "郵便番号" , class: "identification__input--default"
 
-          .identification__content--form--kana.identification__form--default
-          = f.label :都道府県
-          %span.identification__content--require.identification__require--default 必須
-          .select__wrapper.prefecture__wrapper
-            %i.fa.fa-angle-down
-            = f.select :prefecture, User.prefectures.keys.to_a, {},{class: "select__prefecture select-default"}
+        .identification__content--form--kana.identification__form--default
+        = f.label :都道府県
+        %span.identification__content--require.identification__require--default 必須
+        .select__wrapper.prefecture__wrapper
+          %i.fa.fa-angle-down
+          = f.select :prefecture, User.prefectures.keys.to_a, {},{class: "select__prefecture select-default"}
 
-          .identification__content--form--kana.identification__form--default
-          = f.label :市町村
-          %span.identification__content--require.identification__require--default 必須
-          = f.text_field :city, placeholder: "市町村" , class: "identification__input--default"
+        .identification__content--form--kana.identification__form--default
+        = f.label :市町村
+        %span.identification__content--require.identification__require--default 必須
+        = f.text_field :city, placeholder: "市町村" , class: "identification__input--default"
 
-          .identification__content--form--kana.identification__form--default
-          = f.label :番地
-          %span.identification__content--require.identification__require--default 必須
-          = f.text_field :address, placeholder: "番地" , class: "identification__input--default"
+        .identification__content--form--kana.identification__form--default
+        = f.label :番地
+        %span.identification__content--require.identification__require--default 必須
+        = f.text_field :address, placeholder: "番地" , class: "identification__input--default"
 
-          .identification__content--form--kana.identification__form--default
-          = f.label :建物名
-          %span.identification__content--any 任意
-          = f.text_field :building_name, placeholder: "建物名" , class: "identification__input--default"
+        .identification__content--form--kana.identification__form--default
+        = f.label :建物名
+        %span.identification__content--any 任意
+        = f.text_field :building_name, placeholder: "建物名" , class: "identification__input--default"
 
-          .identification__content--form--kana.identification__form--default
-          = f.label :生年月日
-          %span.identification__content--require.identification__require--default 必須
-          .birth__content__top
-            = f.select :birth_year, [1950,1951,1952,1953,1954,1956,1957,1958,1959,1960,1961,1962,1963], { id: "payment_card_expire_mm" }, { class: "select__year select-default" }
-            %span.year__text 年
-            = f.select :birth_month, [1,2,3,4,5,6,7,8,9,10,11,12], { id: "payment_card_expire_mm" }, { class: "select__year select-default" }
-            %span.month__text 月
-            = f.select :birth_day,[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],  { id: "payment_card_expire_mm" },{class: "select__year select-default"}
-            %span.day__text 日
-          %p.confirm__text__identification ※出品されたことがある、本人情報未登録のお客さまもご対象となります。
-          %section.identification__wrapper--button
-            = f.submit :登録する, class: "identification__button"
-          .about__identification
-            = link_to root_path do
-              %span 本人情報の登録について
-              %i.fa.fa-angle-right
+        .identification__content--form--kana.identification__form--default
+        = f.label :生年月日
+        %span.identification__content--require.identification__require--default 必須
+        .birth__content__top
+          = f.select :birth_year, [1950,1951,1952,1953,1954,1956,1957,1958,1959,1960,1961,1962,1963], { id: "payment_card_expire_mm" }, { class: "select__year select-default" }
+          %span.year__text 年
+          = f.select :birth_month, [1,2,3,4,5,6,7,8,9,10,11,12], { id: "payment_card_expire_mm" }, { class: "select__year select-default" }
+          %span.month__text 月
+          = f.select :birth_day,[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],  { id: "payment_card_expire_mm" },{class: "select__year select-default"}
+          %span.day__text 日
+        %p.confirm__text__identification ※出品されたことがある、本人情報未登録のお客さまもご対象となります。
+        %section.identification__wrapper--button
+          = f.submit :登録する, class: "identification__button"
+        .about__identification
+          = link_to root_path do
+            %span 本人情報の登録について
+            %i.fa.fa-angle-right
 
 = render partial: 'modules/footer_logo'

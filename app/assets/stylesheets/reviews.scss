@@ -1,0 +1,64 @@
+.review__icons__wrapper {
+  width: 70%;
+  margin: 0 auto;
+  .review__icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20rem;
+    .review__icons--good {
+        position: relative;
+      .fa-smile-o:before {
+        font-size: 10rem;
+        margin: 0 2rem;
+        color: #ef5185;
+      }
+      .check__good {
+        position: absolute;
+        bottom: -30%;
+        left: 45%;
+      }
+    }
+    .review__icons--normal{
+      position: relative;
+      .fa-meh-o:before {
+        font-size: 10rem;
+        margin: 0 2rem;
+        color: #fba933;
+      }
+      .check__normal {
+        position: absolute;
+        bottom: -30%;
+        left: 45%;
+      }
+    }
+    .review__icons--bad {
+      position: relative;
+      .fa-frown-o:before {
+        font-size: 10rem;
+        margin: 0 2rem;
+        color: #6ab5d8;
+      }
+      .check__bad {
+        position: absolute;
+        bottom: -30%;
+        left: 45%;
+      }
+    }
+  }
+  .review__button {
+    position: absolute;
+    top: 50%;
+    left: 38.8%;
+  .review__submit{
+    font-size: 2rem;
+    padding: 2rem;
+    background: #ea352d;
+    color: #FFF;
+  }
+ }
+}
+
+.check__hidden {
+  display: none;
+}

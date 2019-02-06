@@ -17,21 +17,20 @@
     .item-detail-container__main-content
       .item-photo
         .main-image
-          = image_tag (@item.item_images.first.image)
-        %ul.sub-image
-          %li
+          - if @item.item_images.present?
             = image_tag (@item.item_images.first.image)
-          %li
-            = image_tag (asset_path "member_photo_noimage_thumb.png")
-          %li
-            = image_tag (asset_path "cloth3.jpg")
-          %li
-            = image_tag (asset_path "member_photo_noimage_thumb.png")
+          - else
+            = image_tag (asset_path "noimage.gif")
+        %ul.sub-image
+          - if @item.item_images.present?
+            - @item.item_images.each do |item_image|
+              %li
+                = image_tag (item_image.image)
         .item-soldout
           - if @item.buyer_id != nil
             .item-soldout-image
               %p.sold SOLD
-              
+
       %table.item-detail-table
         %tbody
           %tr
@@ -63,7 +62,7 @@
                 .item-detail-table-sub-sub-category
                   = fa_icon "chevron-right"
                   = @item.category.name
-                  
+
           %tr
             %th ブランド
             %td
@@ -104,17 +103,17 @@
           %p 送料込み
         - else @item.burden_before_type_cast == 2
           %p 着払い
-     
+
     .item-description
       %p.item-description-inner
         = @item.describe
-       
+
   .item-change-container
     = link_to edit_item_path(@item.id), class: "btn-default btn-red" do
       商品の編集
     %p.text-center or
     %button.btn-default.btn-gray 出品を一旦停止する
-    %button.btn-default.btn-red この商品を削除する
+    %button.btn-default.btn-gray.delete この商品を削除する
 
   .item-detail-message
     .message-container
@@ -126,7 +125,7 @@
                 .message-user-unknown
                   = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "message-user-photo"
                 %figcaption.bold
-                
+
             .message-body
               .message-body-text 出品者がコメントを削除しました
               .message-icons.clearfix

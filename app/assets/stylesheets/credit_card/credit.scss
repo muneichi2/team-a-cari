@@ -263,3 +263,9 @@
   background-color: #f5f5f5;
 }
 
+.alert__invalid {
+  li{
+    font-size: 2rem;
+    color: red;
+  }
+}

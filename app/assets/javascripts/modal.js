@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function(){
 
-  $('.btn-default.btn-red').on('click', function(){
+  $('.btn-default.btn-red.delete').on('click', function(){
     $('.overlay').fadeIn();
     $('.modal').fadeIn();
     $('html, body').css('overflow', 'hidden');

@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :bought_items, class_name: 'Item', foreign_key: 'buyer_id'
   has_many :sold_items, class_name: 'Item', foreign_key: 'seller_id'
+  has_many :comments
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -15,6 +16,7 @@ class User < ApplicationRecord
       user.nickname = auth.info.name
     end
   end
+
 
   validates :nickname, presence: true, length: { maximum: 20 }
   validates :email, presence: true, uniqueness: true
@@ -30,5 +32,10 @@ class User < ApplicationRecord
     "徳島県": 36,"香川県": 37,"愛媛県": 38,"高知県": 39,
     "福岡県": 40,"佐賀県": 41,"長崎県": 42,"熊本県": 43,"大分県": 44,"宮崎県": 45,"鹿児島県": 46,"沖縄県": 47
   }
-
+  private
+  def self.set_review(reviews)
+    @good_reviews = reviews.where(review: "良い")
+    @normal_reviews = reviews.where(review: "普通")
+    @bad_reviews = reviews.where(review: "悪い")
+  end
 end

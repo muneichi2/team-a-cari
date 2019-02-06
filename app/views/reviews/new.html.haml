@@ -1,0 +1,23 @@
+.review__wrapper
+  .review__contents
+    .review__icons__wrapper
+      = form_for [@item,@review] do |f|
+        .review__icons
+          .review__icons--good
+            = f.label :review, for: "good" do
+              %i.fa.fa-smile-o.review__icon--default
+              = f.check_box :review, {id: "good", class: "check__hidden"}, "良い", nil
+          .review__icons--normal
+            = f.label :review, for: "normal" do
+              %i.fa.fa-meh-o.review__icon--default
+              = f.check_box :review, {id: "normal", class: "check__hidden"}, "普通", nil
+          .review__icons--bad
+            = f.label :review, for: "bad" do
+              %i.fa.fa-frown-o.review__icon--default
+              = f.check_box :review, {id: "bad", class: "check__hidden"}, "悪い", nil
+        - if current_user.id == @item.buyer_id
+          .review__button
+            = f.submit :出品者を評価して取引を終わる, class: "review__submit"
+        - else
+          .review__button
+            = f.submit :購入者を評価して取引を終わる, class: "review__submit"

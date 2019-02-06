@@ -168,7 +168,8 @@
                 加盟店規約
               に同意したことになります。
             = f.submit "出品する", class: "exhibit-button"
-            %button.back-button
-              もどる
 
-      = render partial: 'modules/footer_logo'
+            = link_to "もどる", root_path, class: "back-button"
+
+      .footer
+        = image_tag (asset_path "poricy.png"), class: "exhibit__footer"

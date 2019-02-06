@@ -11,7 +11,33 @@
       %h2.chapter-head 売上・振込申請
       %ul.chapter-list
         %li
-          .chapter-list__box.clearfix
-            .sales-left 現在の売上金
-            .sales-right ¥ 0
+          .sales-box.clearfix
+            .sales-box__left 現在の売上金
+            .sales-box__right ¥ 0
+        %li
+          .sales-box.clearfix
+            .sales-text
+              売上利益
+              = fa_icon 'angle-right', class: 'sales-icon'
+        %li
+          .sales-box.clearfix
+            .sales-text
+              売上金の振込申請期限
+              = fa_icon 'angle-right', class: 'sales-icon'
     %section.sales-container__chapter
+      %ul.chapter-list
+        %li
+          .sales-box.clearfix
+            .sales-text
+              振込申請して現金を受け取る
+              = fa_icon 'angle-right', class: 'sales-icon'
+        %li
+          .sales-box.clearfix
+            .sales-text
+              振込申請履歴
+              = fa_icon 'angle-right', class: 'sales-icon'
+        %li
+          .sales-box.clearfix
+            .sales-text
+              振込申請スケジュール
+              = fa_icon 'angle-right', class: 'sales-icon'

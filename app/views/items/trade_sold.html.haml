@@ -24,7 +24,10 @@
           - @items.each do |item|
             %li
               = link_to "/items/#{item.id}/change", class: "mypage-item-list" do
-                = image_tag (item.item_images.first.image), class: "image-size-default"
+                - if item.item_images.present?
+                  = image_tag (item.item_images.first.image), class: "image-size-default"
+                - else
+                  = image_tag (asset_path "noimage.gif"), class: "image-size-default"
                 .mypage-item-body
                   .mypage-item-body__text
                     = item.name

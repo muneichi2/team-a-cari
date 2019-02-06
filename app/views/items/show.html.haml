@@ -14,11 +14,16 @@
   .item-detail-container__main-content
     .item-photo
       .main-image
-        = image_tag @item_images.first.image
+        - if @item.item_images.present?
+          = image_tag @item_images.first.image
+        - else
+          = image_tag (asset_path "noimage.gif")
       %ul.sub-image
-        - @item_images.each do |item_image|
-          %li
-            = image_tag item_image.image
+        - if @item.item_images.present?
+          - @item_images.each do |item_image|
+            %li
+              = image_tag item_image.image
+
 
       .item-soldout
         - if @item.buyer_id != nil
@@ -35,13 +40,16 @@
             .ratings-wrapper
               .item-user-ratings
                 = fa_icon "smile-o"
-                %span 56
+                %span
+                  = @good_reviews.count
               .item-user-ratings
                 = fa_icon "meh-o"
-                %span 0
+                %span
+                  = @normal_reviews.count
               .item-user-ratings
                 = fa_icon "frown-o"
-                %span 0
+                %span
+                  = @bad_reviews.count
         %tr
           %th カテゴリー
           %td
@@ -99,10 +107,14 @@
       - else @item.burden_before_type_cast == 2
         %p 着払い
 
+
   - if @item.buyer_id == nil
-    .item-buy-btn
-      = link_to "/items/#{@item.id}/buy_confirm", class: "item-buy-btn__link" do
-        購入画面に進む
+    - if user_signed_in? != true || current_user.id != @item.seller_id
+      .item-buy-btn
+        = link_to "/items/#{@item.id}/buy_confirm", class: "item-buy-btn__link" do
+          購入画面に進む
+    - else user_signed_in? && current_user.id == @item.seller_id
+      .item-buy-btn.hidden
   - else @item.buyer_id != nil
     .item-buy-btn.disabled 売り切れました
   .item-description
@@ -125,43 +137,33 @@
 
 .item-detail-message
   .message-container
-    .message-content
-      %ul.message-items
-        %li.clearfix
-          .message-user
-            %figure
-              .message-user-unknown
-                = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "message-user-photo"
-              %figcaption.bold
+  - if @comments
+    - @comments.each do |comment|
+      .message-content
+        %ul.message-items
+          %li.clearfix
+            .message-user
+              %figure
+                .message-user-unknown
+                  = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "message-user-photo"
+                %figcaption.bold
 
-          .message-body
-            .message-body-text 出品者がコメントを削除しました
-            .message-icons.clearfix
-              %time.message-icon-left
-                = fa_icon "clock-o"
-                %span 2日前
-            = fa_icon "comment rotate-90"
+            .message-body
+              .message-body-text
+                = comment.text
+              .message-icons.clearfix
+                %time.message-icon-left
+                  = fa_icon "clock-o"
+                  %span
+                    = time_ago_in_words(comment.created_at)
+              = fa_icon "comment rotate-90"
 
-        %li.clearfix
-          .message-user
-            %figure
-              .message-user-unknown
-                = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "message-user-photo"
-              %figcaption.bold
-
-          .message-body
-            .message-body-text 出品者がコメントを削除しました
-            .message-icons.clearfix
-              %time.message-icon-left
-                = fa_icon "clock-o"
-                %span 2日前
-            = fa_icon "comment rotate-90"
 
     .message-content
-      = form_with method: 'POST', class: "message_form" do |f|
+      = form_with url: item_comments_path(@item) , local: true , class: "message_form" do |f|
         %p
           相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-        = f.text_area :name , class: "commentarea-default"
+        = f.text_area :text , class: "commentarea-default"
         = f.submit 'コメントする', class: "message-submit comment-btn-default btn-gray"
 
 %ul.nav-other-item-link.clearfix

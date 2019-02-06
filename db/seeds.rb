@@ -8,17 +8,17 @@
 
 require "csv"
 
-CSV.foreach('db/category.csv') do |row|
-  Category.create(id: row[0], name: row[1], ancestry: row[2])
+CSV.foreach('db/category2.csv') do |row|
+  Category.find_or_create_by(id: row[0], name: row[1], ancestry: row[2])
 end
 
 CSV.foreach('db/size.csv') do |row|
-  Size.create(id: row[0], name: row[1])
+  Size.find_or_create_by(id: row[0], name: row[1])
 end
 
 
 CSV.foreach('db/brand.csv') do |row|
-  Brand.create(id: row[0], name: row[1])
+  Brand.find_or_create_by(id: row[0], name: row[1])
 end
 
 #アイテム

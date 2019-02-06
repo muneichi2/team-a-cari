@@ -6,8 +6,8 @@ module DeviseHelper
     html = ""
     messages = resource.errors.full_messages.each do |msg|
       html += <<-EOF
-      <div class="alert alert-danger alert-dismissible" role="alert">
-        <p class="devise_error_msg">#{msg}</p>
+      <div class="devise-error__alert alert-danger alert-dismissible" role="alert">
+        <li class="devise-error__msg">#{msg}</p>
       </div>
       EOF
     end
