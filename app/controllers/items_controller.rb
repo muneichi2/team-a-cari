@@ -70,6 +70,8 @@ class ItemsController < ApplicationController
     @good_reviews = @reviews.where(review: "良い")
     @normal_reviews = @reviews.where(review: "普通")
     @bad_reviews = @reviews.where(review: "悪い")
+    @comments = @item.comments.includes(:user)
+    @comment = Comment.new
   end
 
   def change

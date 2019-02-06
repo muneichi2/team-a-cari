@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :bought_items, class_name: 'Item', foreign_key: 'buyer_id'
   has_many :sold_items, class_name: 'Item', foreign_key: 'seller_id'
+  has_many :comments
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

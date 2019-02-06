@@ -137,43 +137,33 @@
 
 .item-detail-message
   .message-container
-    .message-content
-      %ul.message-items
-        %li.clearfix
-          .message-user
-            %figure
-              .message-user-unknown
-                = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "message-user-photo"
-              %figcaption.bold
+  - if @comments
+    - @comments.each do |comment|
+      .message-content
+        %ul.message-items
+          %li.clearfix
+            .message-user
+              %figure
+                .message-user-unknown
+                  = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "message-user-photo"
+                %figcaption.bold
 
-          .message-body
-            .message-body-text 出品者がコメントを削除しました
-            .message-icons.clearfix
-              %time.message-icon-left
-                = fa_icon "clock-o"
-                %span 2日前
-            = fa_icon "comment rotate-90"
+            .message-body
+              .message-body-text
+                = comment.text
+              .message-icons.clearfix
+                %time.message-icon-left
+                  = fa_icon "clock-o"
+                  %span
+                    = time_ago_in_words(comment.created_at)
+              = fa_icon "comment rotate-90"
 
-        %li.clearfix
-          .message-user
-            %figure
-              .message-user-unknown
-                = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "message-user-photo"
-              %figcaption.bold
-
-          .message-body
-            .message-body-text 出品者がコメントを削除しました
-            .message-icons.clearfix
-              %time.message-icon-left
-                = fa_icon "clock-o"
-                %span 2日前
-            = fa_icon "comment rotate-90"
 
     .message-content
-      = form_with method: 'POST', class: "message_form" do |f|
+      = form_with url: item_comments_path(@item) , local: true , class: "message_form" do |f|
         %p
           相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-        = f.text_area :name , class: "commentarea-default"
+        = f.text_area :text , class: "commentarea-default"
         = f.submit 'コメントする', class: "message-submit comment-btn-default btn-gray"
 
 %ul.nav-other-item-link.clearfix
