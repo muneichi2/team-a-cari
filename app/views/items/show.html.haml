@@ -126,7 +126,7 @@
       %button.item-button.item-button-like
         = fa_icon "heart-o", class: "icon-like-border"
         %span いいね!
-        %span{"data-num": "like"} 6
+        %span{"data-num": "like"} 0
       = link_to root_path, class: "item-button item-button-report clearfix" do
         = fa_icon "flag-o"
         %span 不適切な商品の報告
@@ -207,6 +207,6 @@
           = @item.brand.name
           その他の商品
 
-    = render "other"
+    = render "other2"
 
 = render partial: 'modules/footer_index'

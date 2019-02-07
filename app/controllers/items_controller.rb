@@ -64,6 +64,8 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @other_items = Item.where(seller_id: @item.seller_id).where.not(id: @item.id)
+    @brand_items = Item.where(brand_id: @item.brand_id).where.not(id: @item.id)
     @item_images = @item.item_images.limit(Image_count)
     @user = User.find(@item.seller_id)
     @reviews = Review.where(taker_id: @user.id)
@@ -77,6 +79,8 @@ class ItemsController < ApplicationController
   def change
     @item = Item.find(params[:id])
     @item_images = @item.item_images.limit(Image_count)
+    @comments = @item.comments.includes(:user)
+    @comment = Comment.new
   end
 
   def edit
@@ -103,10 +107,6 @@ class ItemsController < ApplicationController
   def search
     @search = Item.includes(:user).ransack(params[:q])
     @items = @search.result(distinct: true)
-  end
-
-  def change
-    @item = Item.find(params[:id])
   end
 
   def destroy
