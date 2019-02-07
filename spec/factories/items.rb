@@ -12,8 +12,8 @@ FactoryBot.define do
     seller_id nil
     buyer_id nil
     category_id 80
-    brand_id nil
-    size_id nil
+    brand_id 2
+    size_id 2
     # item.create! (name: name,
     #               price: price,
     #               describe: describe,
