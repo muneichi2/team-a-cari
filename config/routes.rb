@@ -41,6 +41,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :items do
+    resources :comments, only: [:create]
+    resources :users, only: [:show]
+  end
+
   patch '/:id/user/identify', to: 'users#identify'
 
 end

@@ -76,3 +76,8 @@ crumb :sales do
   link "売上・振込申請", "/users/#{current_user.id}/sales"
   parent :mypage
 end
+
+crumb :search do
+  link "#{params[:q][:name_cont]}", search_items_path
+  parent :root
+end

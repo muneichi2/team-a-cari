@@ -2,8 +2,11 @@
   .upper-box
     = link_to root_path, class: "upper-box__logo" do
       = image_tag (asset_path "logo.png")
-    %input.upper-box__search{placeholder: "キーワードから探す", type: "text"}
-    = fa_icon "search"
+
+    = search_form_for(@search, url: search_items_path) do |f|
+      = f.search_field :name_cont, placeholder: "キーワードから探す"
+      = fa_icon "search"
+
   .under-box
     .under-box__left
       %ul.l-left
