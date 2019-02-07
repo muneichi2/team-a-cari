@@ -13,6 +13,8 @@ class Item < ApplicationRecord
   has_many   :item_images, dependent: :destroy
   accepts_nested_attributes_for :item_images, allow_destroy: true
 
+  validates_associated :item_images
+
   with_options presence: true do |presence|
     presence.validates :name, length: { maximum: 40 }
     presence.validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }

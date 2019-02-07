@@ -29,6 +29,10 @@ $(document).on('turbolinks:load', function() {
     });
   }else{
     attributesNum = 1
+    if ($("label.upload__drop-box").length == 0) {
+      $(".sell-upload-items-container").append(buildLabelHTML(attributesNum));
+      attributesNum += 1
+    }
   }
 
 
@@ -97,6 +101,7 @@ $(document).on('turbolinks:load', function() {
     $('label').find('input[type="file"]').each(function( i, targetFile ) {
       if (targetFile.id.match(/[0-9]+/) == deleteNum) {
         $(targetFile).prev('#delete').prop('checked', true)
+        $(targetFile).remove()
       }
     });
 

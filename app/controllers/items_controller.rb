@@ -56,10 +56,10 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(create_params)
-    if @item.save
+    if params[:item][:item_images_attributes] != nil && @item.save(create_params)
       redirect_to action: 'index'
     else
-      redirect_to action: 'new'
+      redirect_to new_item_path
     end
   end
 
@@ -85,11 +85,11 @@ class ItemsController < ApplicationController
 
   def update
     item = Item.find(params[:id])
-    if current_user.id == item.seller_id && user_signed_in?
+    if (validate_image == false) && (current_user.id == item.seller_id && user_signed_in?)
       item.update(update_params)
       redirect_to action: 'change'
     else
-      redirect_to action: 'edit'
+      redirect_to edit_item_path
     end
   end
 
@@ -117,6 +117,7 @@ class ItemsController < ApplicationController
   def update_params
     params.require(:item).permit(:name, :price, :describe, :size_id, :brand_id, :status, :burden, :delivery_method, :prefecture, :delivery_day, :category_id, item_images_attributes: [:id , :item_id, :image, :_destroy]).merge(seller_id: current_user.id)
   end
+  
   def set_review
     @user = User.find(@item.seller_id)
     @reviews = Review.where(taker_id: @user.id)
@@ -124,4 +125,11 @@ class ItemsController < ApplicationController
     @normal_reviews = @reviews.where(review: "普通")
     @bad_reviews = @reviews.where(review: "悪い")
   end
+
+  def validate_image
+    images = params[:item][:item_images_attributes].values
+    judge = images.select { |image| image[:_destroy] == "0" || image[:image] }
+    return judge.empty?
+  end
+
 end
