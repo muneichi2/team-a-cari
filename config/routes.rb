@@ -20,7 +20,6 @@ Rails.application.routes.draw do
       get '/:id/bought', to: "items#bought"
       get '/:id/registrate', to: "cards#registrate"
     end
-    resources :reviews, only: [:new, :create]
     resources :cards, only:[:index,:new, :pay]
       collection do
         post '/pay', to: "cards#pay"

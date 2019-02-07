@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-
+  before_action :set_item, only:[:show,:change,:edit]
+  before_action :set_review, only:[:show,:change]
   def index
 
     @categories = Category.all
@@ -77,14 +78,12 @@ class ItemsController < ApplicationController
   end
 
   def change
-    @item = Item.find(params[:id])
     @item_images = @item.item_images.limit(Image_count)
     @comments = @item.comments.includes(:user)
     @comment = Comment.new
   end
 
   def edit
-    @item = Item.find(params[:id])
     @set_sub = @item.category.parent
     @set_third = @item.category
     @sub_categories = Category.siblings_of(@item.category.parent)
@@ -120,8 +119,26 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :price, :describe, :size_id, :brand_id, :status, :burden, :delivery_method, :prefecture, :delivery_day, :category_id, item_images_attributes: [:image]).merge(seller_id: current_user.id)
   end
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
   def update_params
     params.require(:item).permit(:name, :price, :describe, :size_id, :brand_id, :status, :burden, :delivery_method, :prefecture, :delivery_day, :category_id, item_images_attributes: [:id , :item_id, :image, :_destroy]).merge(seller_id: current_user.id)
+  end
+  
+  def set_review
+    @user = User.find(@item.seller_id)
+    @reviews = Review.where(taker_id: @user.id)
+    @good_reviews = @reviews.where(review: "良い")
+    @normal_reviews = @reviews.where(review: "普通")
+    @bad_reviews = @reviews.where(review: "悪い")
+  end
+
+  def validate_image
+    images = params[:item][:item_images_attributes].values
+    judge = images.select { |image| image[:_destroy] == "0" || image[:image] }
+    return judge.empty?
   end
 
   def validate_image

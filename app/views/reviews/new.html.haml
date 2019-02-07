@@ -1,4 +1,10 @@
 .review__wrapper
+  - if current_user.id == @item.buyer_id
+    .review__request
+      %h3 出品者を評価してください
+  - else
+    .review__request
+      %h3 購入者を評価してください
   .review__contents
     .review__icons__wrapper
       = form_for [@item,@review] do |f|
@@ -15,6 +21,12 @@
             = f.label :review, for: "bad" do
               %i.fa.fa-frown-o.review__icon--default
               = f.check_box :review, {id: "bad", class: "check__hidden"}, "悪い", nil
+        .review__text
+          .review__text__contents
+            .review__text__contents--review
+              %span 良い
+              %span 普通
+              %span 悪い
         - if current_user.id == @item.buyer_id
           .review__button
             = f.submit :出品者を評価して取引を終わる, class: "review__submit"
