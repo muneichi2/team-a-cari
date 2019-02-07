@@ -64,13 +64,23 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
+    @other_items = Item.where(seller_id: @item.seller_id).where.not(id: @item.id)
+    @brand_items = Item.where(brand_id: @item.brand_id).where.not(id: @item.id)
     @item_images = @item.item_images.limit(Image_count)
+    @user = User.find(@item.seller_id)
+    @reviews = Review.where(taker_id: @user.id)
+    @good_reviews = @reviews.where(review: "良い")
+    @normal_reviews = @reviews.where(review: "普通")
+    @bad_reviews = @reviews.where(review: "悪い")
     @comments = @item.comments.includes(:user)
     @comment = Comment.new
   end
 
   def change
     @item_images = @item.item_images.limit(Image_count)
+    @comments = @item.comments.includes(:user)
+    @comment = Comment.new
   end
 
   def edit
@@ -98,7 +108,6 @@ class ItemsController < ApplicationController
     @items = @search.result(distinct: true)
   end
 
-
   def destroy
     item = Item.find(params[:id])
     item.destroy if item.seller_id == current_user.id
@@ -124,6 +133,12 @@ class ItemsController < ApplicationController
     @good_reviews = @reviews.where(review: "良い")
     @normal_reviews = @reviews.where(review: "普通")
     @bad_reviews = @reviews.where(review: "悪い")
+  end
+
+  def validate_image
+    images = params[:item][:item_images_attributes].values
+    judge = images.select { |image| image[:_destroy] == "0" || image[:image] }
+    return judge.empty?
   end
 
   def validate_image

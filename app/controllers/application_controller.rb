@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   Commission = 0.1
 
   private
+
   def production?
     Rails.env.production?
   end
