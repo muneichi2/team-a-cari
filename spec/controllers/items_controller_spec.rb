@@ -24,4 +24,31 @@ describe ItemsController, type: :controller do
     end
 
   end
+
+  describe "DELETE #destroy" do
+
+    before do
+      @item = create(:item)
+    end
+
+    context "認証済みのユーザー" do
+      before do
+        @user = create(:user)
+        sign_in @user
+      end
+
+    it "itemが削除される" do
+      expect{ delete :destroy, @item.destroy }.to change(Item, :count).by(-1)
+    end
+
+    it "itemを削除すると、紐付くimageが削除される" do
+      expect{ delete :destroy, @item.destroy }.to change(ItemImage, :count).by(-1)
+    end
+
+    it "item_pathへリダイレクトする" do
+      delete :destroy
+      expect(response).to redirect_to(item_path)
+    end
+
+  end
 end
