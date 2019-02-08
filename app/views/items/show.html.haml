@@ -147,6 +147,7 @@
                 .message-user-unknown
                   = image_tag (asset_path "member_photo_noimage_thumb.png"), class: "message-user-photo"
                 %figcaption.bold
+                  = current_user.nickname
 
             .message-body
               .message-body-text
