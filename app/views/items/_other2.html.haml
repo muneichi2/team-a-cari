@@ -1,18 +1,18 @@
 .items-box-content.clearfix
-  - @other_items.each do |other_item|
+  - @brand_items.each do |brand_item|
     %section.items-box
-      = link_to item_path(other_item.id) do
+      = link_to item_path(brand_item.id) do
         .trim
-          - if other_item.item_images.present?
-            = image_tag other_item.item_images.first.image
+          - if brand_item.item_images.present?
+            = image_tag brand_item.item_images.first.image
           - else
             = image_tag (asset_path "noimage.gif")
         .items-box-body
           .items-box-name
-            = other_item.name
+            = brand_item.name
           .items-box-num
             .items-box-price
-              = number_to_currency(other_item.price, locale: 'jp')
+              = number_to_currency(brand_item.price, locale: 'jp')
             .items-box-likes
               = fa_icon 'heart-o'
               %span 0
