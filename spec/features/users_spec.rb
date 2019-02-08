@@ -1,8 +1,8 @@
 require "rails_helper"
 
-describe "UserFeature" do
+RSpec.describe "UserFeature" do
 
-  describe "signup via facebook" do
+  describe "Facebookを経由してログインする" do
 
     before do
       OmniAuth.config.mock_auth[:facebook] = nil
@@ -11,13 +11,13 @@ describe "UserFeature" do
       click_link "ログイン"
     end
 
-    it "Users increase when they do signup" do
+    it "Facebookを経由して新規登録する" do
       expect{
         click_link "Facebookでログイン"
       }.to change(User, :count).by(1)
     end
 
-    it "The accepted users do not increase anymore" do
+    it "既に登録されているユーザーの場合は登録されない" do
       click_link "Facebookでログイン"
       click_link "ログアウト"
       click_link "ログイン"
@@ -28,7 +28,7 @@ describe "UserFeature" do
 
   end
 
-  describe "signup via google" do
+  describe "Googleを経由してログインする" do
 
     before do
       OmniAuth.config.mock_auth[:google_oauth2] = nil
@@ -37,13 +37,13 @@ describe "UserFeature" do
       click_link "ログイン"
     end
 
-    it "Users increase when they do signup" do
+    it "Googleを経由して新規登録する" do
       expect{
         click_link "Googleでログイン"
       }.to change(User, :count).by(1)
     end
 
-    it "The accepted users do not increase anymore" do
+    it "既に登録されているユーザーの場合は登録されない" do
       click_link "Googleでログイン"
       click_link "ログアウト"
       click_link "ログイン"
